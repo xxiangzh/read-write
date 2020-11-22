@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="Mysql" targetRuntime="MyBatis3Simple">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="com.xzh.rw.config.BaseMapper"/>
+        </plugin>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/a?useUnicode=true&amp;characterEncoding=utf8&amp;characterSetResults=utf8&amp;allowMultiQueries=true&amp;useSSL=false&amp;nullCatalogMeansCurrent=true"
+                        userId="root" password="123456"/>
+
+        <!-- pojo -->
+        <javaModelGenerator targetPackage="com.xzh.rw.dao.pojo" targetProject="src/main/java">
+            <property name="immutable" value="true"/>
+            <property name="constructorBased" value="false"/>
+        </javaModelGenerator>
+        <!-- mapper.xml -->
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
+        <!-- mapper -->
+        <javaClientGenerator targetPackage="com.xzh.rw.dao.mapper" targetProject="src/main/java" type="XMLMAPPER"/>
+
+        <!--已生成的表-->
+        <table tableName="t_demo" domainObjectName="Demo">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+
+    </context>
+</generatorConfiguration>

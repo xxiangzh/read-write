@@ -1,0 +1,36 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: dev
+  datasource:
+    write:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/a?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2B8&zeroDateTimeBehavior=CONVERT_TO_NULL
+      username: root
+      password: 123456
+    read1:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/b?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2B8&zeroDateTimeBehavior=CONVERT_TO_NULL
+      username: root
+      password: 123456
+    read2:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/c?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2B8&zeroDateTimeBehavior=CONVERT_TO_NULL
+      username: root
+      password: 123456
+
+# Mybatis
+mybatis:
+  configuration:
+    jdbc-type-for-null: null
+    mapUnderscoreToCamelCase: true
+  type-aliases-package: com.xzh.rw.dao.pojo.*
+  mapper-locations: classpath:mapper/**/*.xml
+
+# mapper dir
+mapper:
+  mappers: com.xzh.rw.config.BaseMapper
+  not-empty: false
+  identity: MYSQL
