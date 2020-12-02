@@ -1,5 +1,6 @@
 package com.xzh.rw.config;
 
+import java.util.concurrent.ThreadLocalRandom;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
@@ -18,19 +19,8 @@ public class MyAbstractRoutingDataSource extends AbstractRoutingDataSource {
             return typeKey;
         }
         //使用随机数决定使用哪个读库
-        int sum = getRandom(1, 2);
+        int sum = ThreadLocalRandom.current().nextInt(1) + 1;
         log.info("使用：{}{}", DbContextHolder.READ, sum);
         return DbContextHolder.READ + sum;
-    }
-
-    /**
-     * 获取范围内随机一个值
-     *
-     * @param min
-     * @param max
-     * @return
-     */
-    public static int getRandom(int min, int max) {
-        return (int) Math.floor(Math.random() * (max - min + 1)) + min;
     }
 }
